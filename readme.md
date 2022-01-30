@@ -1,8 +1,8 @@
 # E-commercial project
 Tech. and tools
-- [x] Mysql
-- [x] Flask 
-- [x] python 
+    - [x] Mysql
+    - [x] Flask 
+    - [x] python 
 
 
 -----
