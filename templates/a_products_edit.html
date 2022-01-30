@@ -1,0 +1,53 @@
+{% extends 'admin_layout.html' %}
+
+
+{% block title %}EDIT_PRODUCTS{% endblock %}
+
+{% block content %}
+<h2>Product Data to Edit</h2>
+<div>
+  <form method = "POST" action="{{ url_for('a_products_edit') }}" autocomplete="off">
+    <br/><label for="id">id</label>
+    <br/><input type="text" name="id" id="id" required>  
+    <br/><label for="name">name</label>
+    <br/><input type="text" name="name" id="name" required>
+    <br/><label for="price">price</label>
+    <br/><input type="text" name="price" id="price" required>  
+    <br/><label for="inventory">inventory</label>
+    <br/><input type="text" name="inventory" id="inventory" required>
+    <br/><label for="kind">kind</label>
+    <br/><input type="text" name="kind" id="kind" required>  
+    <br/><label for="store">store</label>
+    <br/><input type="text" name="store" id="store" required>      
+    {% if msg != '' %}
+        <div class="msg">{{ msg }}</div>
+    {% endif %}     
+    <br/><input type="submit" value ="EDIT"> 
+   </form>       
+</div>
+{% if product == () %}
+    Product Data is Empty!
+{% else %}
+    Product Data:
+    <table border = 1>
+      <tr>
+        <th>id</th>
+        <th>name</th>
+        <th>price</th>
+        <th>inventory</th>
+        <th>kind</th>
+        <th>store</th>   
+      </tr>
+      {% for i in product %}
+        <tr>
+          <td> {{ i['id'] }} </td>
+          <td> {{ i['name'] }} </td>
+          <td> {{ i['price'] }} </td>
+          <td> {{ i['inventory'] }} </td>
+          <td> {{ i['kind'] }} </td>
+          <td> {{ i['store'] }} </td>
+        </tr>
+       {% endfor %}
+     </table>
+{% endif %}
+{% endblock %}

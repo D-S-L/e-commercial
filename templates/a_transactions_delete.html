@@ -1,0 +1,44 @@
+{% extends 'admin_layout.html' %}
+
+
+{% block title %}DELETE_TEANSACTIONS{% endblock %}
+
+{% block content %}
+<h2>Transaction Data to Delete</h2>
+<div>
+  <form method = "POST" action="{{ url_for('a_transactions_delete') }}" autocomplete="off">
+    <br/><label for="order_id">order_id</label>
+    <br/><input type="text" name="order_id" id="order_id" required>  
+    {% if msg != '' %}
+        <div class="msg">{{ msg }}</div>
+    {% endif %} 
+    <br/><input type="submit" value ="DELETE"> 
+   </form>       
+</div>
+
+{% if transaction == () %}
+    Transaction Data is Empty!
+{% else %}
+    Transaction Data:
+    <table border = 1>
+      <tr>
+        <th>order id</th>
+        <th>product id</th>
+        <th>product quantity</th>
+        <th>date</th>
+        <th>salesperson id</th>
+        <th>customer id</th>
+      </tr>
+      {% for i in transaction %}
+        <tr>
+          <td> {{ i['order_id'] }} </td>
+          <td> {{ i['product_id'] }} </td>
+          <td> {{ i['product_quantity'] }} </td>
+          <td> {{ i['date'] }} </td>
+          <td> {{ i['salesperson_id'] }} </td>
+          <td> {{ i['customer_id'] }} </td>
+        </tr>
+       {% endfor %}
+     </table>
+{% endif %}
+{% endblock %}

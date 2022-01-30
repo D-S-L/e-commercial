@@ -1,0 +1,46 @@
+{% extends 'admin_layout.html' %}
+
+
+{% block title %}ADD_CUSTOMER{% endblock %}
+
+{% block content %}
+<h2>Customer Data to Add</h2>
+<div>
+  <form method = "POST" action="{{ url_for('a_customer_add') }}" autocomplete="off">
+    <br/><label for="id">id</label>
+    <br/><input type="text" name="id" id="id" required>  
+    <br/><label for="name">name</label>
+    <br/><input type="text" name="name" id="name" required>
+    <br/><label for="address">address</label>
+    <br/><input type="text" name="address" id="address" required>    
+    <br/><label for="kind">kind</label>
+    <br/><input type="text" name="kind" id="kind" required>
+    {% if msg != '' %}
+        <div class="msg">{{ msg }}</div>
+    {% endif %}    
+    <br/><input type="submit" value ="Add"> 
+   </form>       
+</div>
+
+{% if customer == () %}
+    Customer Data is Empty!
+{% else %}
+    Customer Data:
+    <table border = 1>
+      <tr>
+        <th>id</th>
+        <th>name</th>
+        <th>address</th>
+        <th>kind</th>
+      </tr>
+      {% for i in customer %}
+        <tr>
+          <td> {{ i['id'] }} </td>
+          <td> {{ i['name'] }} </td>
+          <td> {{ i['address'] }} </td>
+          <td> {{ i['kind'] }} </td>
+        </tr>
+       {% endfor %}
+     </table>
+{% endif %}
+{% endblock %}

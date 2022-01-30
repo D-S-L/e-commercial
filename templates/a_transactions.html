@@ -1,0 +1,50 @@
+{% extends 'admin_layout.html' %}
+
+
+{% block title %}Transaction{% endblock %}
+
+{% block content %}
+<h2>Transaction Data Management</h2>
+<div>
+    <p>Please select the operation:</p>
+    <body>
+      <form method="POST" action="{{ url_for('a_transactions_change') }}">
+       <select name = "op">
+          {% for op in ops %}
+          <option value= "{{op}}" SELECTED>{{ op }}</option>"
+          {% endfor %}
+       </select>
+      <input type="submit" value ="Submit">  
+       {% for message in get_flashed_messages() %}
+       {{message}}
+       {% endfor %}      
+      </form>
+    </body>
+</div>
+{% if transaction == () %}
+    Transaction Data is Empty!
+{% else %}
+    Transaction Data:
+    <table border = 1>
+      <tr>
+        <th>order id</th>
+        <th>product id</th>
+        <th>product quantity</th>
+        <th>date</th>
+        <th>salesperson id</th>
+        <th>customer id</th>
+      </tr>
+      {% for i in transaction %}
+        <tr>
+          <td> {{ i['order_id'] }} </td>
+          <td> {{ i['product_id'] }} </td>
+          <td> {{ i['product_quantity'] }} </td>
+          <td> {{ i['date'] }} </td>
+          <td> {{ i['salesperson_id'] }} </td>
+          <td> {{ i['customer_id'] }} </td>
+        </tr>
+       {% endfor %}
+     </table>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends 'admin_layout.html' %}
+
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<h2>Ecommerce Administrator Home Page</h2>
+<p>Welcome back, Administrator!</p>
+{% if product == () %}
+    Newest Products: No Data
+{% else %}
+    Newest Products:
+    <table border = 1>
+      <tr>
+        <th>id</th>
+        <th>name</th>
+        <th>price</th>
+        <th>inventory</th>
+        <th>kind</th>
+        <th>store</th>
+      </tr>
+      {% for i in product %}
+        <tr>
+          <td> {{ i['id'] }} </td>
+          <td> {{ i['name'] }} </td>
+          <td> {{ i['price'] }} </td>
+          <td> {{ i['inventory'] }} </td>
+          <td> {{ i['kind'] }} </td>
+          <td> {{ i['store'] }} </td>
+        </tr>
+       {% endfor %}
+     </table>
+{% endif %}
+{% if product == () %}
+    <br/>Newest Order: No Data
+{% else %}
+    <br/>Newest Order:
+    <table border = 1>
+     <tr>
+       <th>Order id</th>
+       <th>Product id</th>
+       <th>Product Quantity</th>
+       <th>Date</th>
+       <th>Salesperson id</th>
+       <th>Customer id</th>
+     </tr>
+      {% for i in transaction %}
+        <tr>
+          <td> {{ i['order_id'] }} </td>
+          <td> {{ i['product_id'] }} </td>
+          <td> {{ i['product_quantity'] }} </td>
+          <td> {{ i['date'] }} </td>
+          <td> {{ i['salesperson_id'] }} </td>
+          <td> {{ i['customer_id'] }} </td>
+        </tr>
+       {% endfor %}
+     </table>
+{% endif %}
+{% endblock %}

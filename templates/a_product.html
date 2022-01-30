@@ -1,0 +1,50 @@
+{% extends 'admin_layout.html' %}
+
+
+{% block title %}Product{% endblock %}
+
+{% block content %}
+<h2>Product Data Management</h2>
+<div>
+    <p>Please select the operation:</p>
+    <body>
+      <form method="POST" action="{{ url_for('a_product_change') }}">
+       <select name = "op">
+          {% for op in ops %}
+          <option value= "{{op}}" SELECTED>{{ op }}</option>"
+          {% endfor %}
+       </select>
+      <input type="submit" value ="Submit">  
+       {% for message in get_flashed_messages() %}
+       {{message}}
+       {% endfor %}      
+      </form>
+    </body>
+</div>
+{% if product == () %}
+    Product Data is Empty!
+{% else %}
+    Product Data:
+    <table border = 1>
+      <tr>
+        <th>id</th>
+        <th>name</th>
+        <th>price</th>
+        <th>inventory</th>
+        <th>kind</th>
+        <th>store</th>   
+      </tr>
+      {% for i in product %}
+        <tr>
+          <td> {{ i['id'] }} </td>
+          <td> {{ i['name'] }} </td>
+          <td> {{ i['price'] }} </td>
+          <td> {{ i['inventory'] }} </td>
+          <td> {{ i['kind'] }} </td>
+          <td> {{ i['store'] }} </td>
+        </tr>
+       {% endfor %}
+     </table>
+{% endif %}
+
+{% endblock %}

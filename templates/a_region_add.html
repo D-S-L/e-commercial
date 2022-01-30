@@ -1,0 +1,41 @@
+{% extends 'admin_layout.html' %}
+
+
+{% block title %}ADD_REGION{% endblock %}
+
+{% block content %}
+<h2>Region Data to Add</h2>
+<div>
+  <form method = "POST" action="{{ url_for('a_region_add') }}" autocomplete="off">
+    <br/><label for="region_id">region_id</label>
+    <br/><input type="text" name="region_id" id="region_id" required>  
+    <br/><label for="region_name">region_name</label>
+    <br/><input type="text" name="region_name" id="region_name" required>
+    <br/><label for="region_manager">region_manager</label>
+    <br/><input type="text" name="region_manager" id="region_manager" required>  
+    {% if msg != '' %}
+        <div class="msg">{{ msg }}</div>
+    {% endif %}   
+    <br/><input type="submit" value ="Add"> 
+   </form>       
+</div>
+{% if region == () %}
+    Region Data is Empty!
+{% else %}
+    Region Data:
+    <table border = 1>
+      <tr>
+        <th>region id</th>
+        <th>region name</th>
+        <th>region manager</th>
+      </tr>
+      {% for i in region %}
+        <tr>
+          <td> {{ i['region_id'] }} </td>
+          <td> {{ i['region_name'] }} </td>
+          <td> {{ i['region_manager'] }} </td>
+        </tr>
+       {% endfor %}
+     </table>
+{% endif %}
+{% endblock %}

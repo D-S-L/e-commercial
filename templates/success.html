@@ -1,0 +1,47 @@
+{% extends 'layout.html' %}
+{% block title %}Purchase completed{% endblock %}
+
+
+
+
+{% block content %}
+<h2>Purchase completed</h2>
+<p><b>We are preparing for shipping your order, {{ username }}!</b></p>
+<!-- {% for e in form %}
+	<table border="1">
+	    <tr>
+	        <td>{{e.name}}</td>
+	        <td>{{e.price}}</td>
+	    </tr>
+
+	</table>
+{% endfor %} -->
+
+
+<form action="{{ url_for('result') }}" method="post">
+    <input type="text" name="max_price" placeholder="max_price" id="max_price"  >
+
+    <input type="text" name="min_price" placeholder="min_price" id="min_price" >
+    
+    <input type="text" name="name" placeholder="product_name" id="Name", value = {{product_name}}>
+  
+    <input type="text" name="Product Kind" placeholder="Product Kind" id="Product Kind" value = {{Product_Kind}}>
+   
+    <input type="submit" value="Search">
+</form>
+
+
+
+
+<div class="card-columns">
+   <div class="card">
+    <center>
+       
+   </center>
+    </div>
+</div>
+
+
+
+
+{% endblock %}

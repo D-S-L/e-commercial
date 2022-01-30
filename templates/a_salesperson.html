@@ -1,0 +1,52 @@
+{% extends 'admin_layout.html' %}
+
+
+{% block title %}Salesperson{% endblock %}
+
+{% block content %}
+<h2>Salesperson Data Management</h2>
+<div>
+    <p>Please select the operation:</p>
+    <body>
+      <form method="POST" action="{{ url_for('a_salesperson_change') }}">
+       <select name = "op">
+          {% for op in ops %}
+          <option value= "{{op}}" SELECTED>{{ op }}</option>"
+          {% endfor %}
+       </select>
+      <input type="submit" value ="Submit">  
+       {% for message in get_flashed_messages() %}
+       {{message}}
+       {% endfor %}      
+      </form>
+    </body>
+</div>
+{% if salesperson == () %}
+    Salesperson Data is Empty!
+{% else %}
+    Product Data:
+    <table border = 1>
+      <tr>
+        <th>salesperson_id</th>
+        <th>salesperson_name</th>
+        <th>address</th>
+        <th>email</th>
+        <th>title</th>
+        <th>store</th> 
+        <th>salary</th>   
+      </tr>
+      {% for i in salesperson %}
+        <tr>
+          <td> {{ i['salesperson_id'] }} </td>
+          <td> {{ i['salesperson_name'] }} </td>
+          <td> {{ i['address'] }} </td>
+          <td> {{ i['email'] }} </td>
+          <td> {{ i['title'] }} </td>
+          <td> {{ i['store'] }} </td>
+          <td> {{ i['salary'] }} </td>
+        </tr>
+       {% endfor %}
+     </table>
+{% endif %}
+
+{% endblock %}

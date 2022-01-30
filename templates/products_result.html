@@ -1,0 +1,39 @@
+{% extends 'admin_layout.html' %}
+
+{% block title %}Statistics{% endblock %}
+
+{% block content %}
+<h2>Statistics</h2>
+<div>
+    <p>Please select the tag and fill the data:</p>
+    <body>
+      <form method="POST" action="{{ url_for('a_aggregate') }}">
+       <select name = "aggregate">
+          {% for aggregate in aggregation %}
+          <option value= "{{aggregate}}" SELECTED>{{ aggregate }}</option>"
+          {% endfor %}
+       </select>
+      <input type="submit" value ="Submit">       
+      </form>
+    </body>
+</div>
+<div>
+  {% if products == () %}
+       Sale Data is Empty!
+  {% else %}
+     Top products categories:
+     <table border = 1>
+        <tr>
+          <th>Product kind</th>
+          <th>Sales number</th>
+        </tr>
+         {% for i in products %}
+         <tr>
+           <td> {{ i['kind'] }} </td>
+           <td> {{ i['num of sale'] }} </td>
+         </tr>
+         {% endfor %}
+     </table>
+   {% endif %}  
+</div>
+{% endblock %}

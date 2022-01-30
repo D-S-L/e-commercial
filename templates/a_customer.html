@@ -1,0 +1,46 @@
+{% extends 'admin_layout.html' %}
+
+
+{% block title %}Customer{% endblock %}
+
+{% block content %}
+<h2>Customer Data Management</h2>
+<div>
+    <p>Please select the operation:</p>
+    <body>
+      <form method="POST" action="{{ url_for('a_customer_change') }}">
+       <select name = "op">
+          {% for op in ops %}
+          <option value= "{{op}}" SELECTED>{{ op }}</option>"
+          {% endfor %}
+       </select>
+      <input type="submit" value ="Submit">  
+       {% for message in get_flashed_messages() %}
+       {{message}}
+       {% endfor %}      
+      </form>
+    </body>
+</div>
+{% if customer == () %}
+    Customer Data is Empty!
+{% else %}
+    Customer Data:
+    <table border = 1>
+      <tr>
+        <th>id</th>
+        <th>name</th>
+        <th>address</th>
+        <th>kind</th>
+      </tr>
+      {% for i in customer %}
+        <tr>
+          <td> {{ i['id'] }} </td>
+          <td> {{ i['name'] }} </td>
+          <td> {{ i['address'] }} </td>
+          <td> {{ i['kind'] }} </td>
+        </tr>
+       {% endfor %}
+     </table>
+{% endif %}
+
+{% endblock %}

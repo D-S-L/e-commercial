@@ -1,0 +1,41 @@
+{% extends 'layout.html' %}
+
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+<h2>Profile Page</h2>
+<div>
+    <p>Your account details are below:</p>
+    <table>
+        <tr>
+            <td>Username:</td>
+            <td>{{ account['username'] }}</td>
+        </tr>
+        <tr>
+            <td>Password:</td>
+            <td>{{ account['password'] }}</td>
+        </tr>
+        <tr>
+            <td>Email:</td>
+            <td>{{ account['email'] }}</td>
+        </tr>
+    </table>
+
+        <form action="{{url_for('profile')}}" method="post">
+            your address：
+            <input type="text" name="address" placeholder="{{ customer[0]['address'] }}" id="address" value="{{ customer[0]['address'] if customer[0]['address'] else 'None' }}">
+           <br></br>  
+            your name：
+            <input type="text" name="user_name" placeholder="{{ customer[0]['name'] }}" id="user_name" value="{{ customer[0]['name'] if customer[0]['name'] else 'None'}}">
+            <br></br>
+            {%if customer[0]['address']==None or  customer[0]['name']==None %}    
+             <input type="submit" value="Add your personal information">
+            {%else%}
+             <input type="submit" value="update your personal information">
+            {%endif%}
+        </form>
+
+
+  
+</div>
+{% endblock %}

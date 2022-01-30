@@ -1,0 +1,26 @@
+{% extends 'admin_layout.html' %}
+
+{% block title %}Manage{% endblock %}
+
+{% block content %}
+<h2>Manage Data</h2>
+<div>
+    <p>Please select the tag and fill the data:</p>
+    <body>
+      <form method="POST" action="{{ url_for('a_change') }}">
+       <select name = "tag">
+          {% for tag in tags %}
+          <option value= "{{tag}}" SELECTED>{{ tag }}</option>"
+          {% endfor %}
+       </select>
+       <select name = "op">
+          {% for op in ops %}
+          <option value= "{{op}}" SELECTED>{{ op }}</option>"
+          {% endfor %}
+       </select>
+      <input type="submit" value ="Submit">       
+      </form>
+    </body>
+</div>
+<div class="msg">{{ msg }}</div>
+{% endblock %}

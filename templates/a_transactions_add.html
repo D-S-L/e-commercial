@@ -1,0 +1,54 @@
+{% extends 'admin_layout.html' %}
+
+
+{% block title %}ADD_TEANSACTIONS{% endblock %}
+
+{% block content %}
+<h2>TRANSACTION Data to Add</h2>
+<div>
+  <form method = "POST" action="{{ url_for('a_transactions_add') }}" autocomplete="off">
+    <br/><label for="order_id">order_id</label>
+    <br/><input type="text" name="order_id" id="order_id" required>  
+    <br/><label for="product_id">product_id</label>
+    <br/><input type="text" name="product_id" id="product_id" required>
+    <br/><label for="product_quantity">product_quantity</label>
+    <br/><input type="text" name="product_quantity" id="product_quantity" required>  
+    <br/><label for="date">date</label>
+    <br/><input type="text" name="date" id="date" required> 
+    <br/><label for="salesperson_id">salesperson_id</label>
+    <br/><input type="text" name="salesperson_id" id="salesperson_id" required> 
+    <br/><label for="customer_id">customer_id</label>
+    <br/><input type="text" name="customer_id" id="customer_id" required> 
+    {% if msg != '' %}
+        <div class="msg">{{ msg }}</div>
+    {% endif %} 
+    <br/><input type="submit" value ="ADD"> 
+   </form>       
+</div>
+
+{% if transaction == () %}
+    Transaction Data is Empty!
+{% else %}
+    Transaction Data:
+    <table border = 1>
+      <tr>
+        <th>order id</th>
+        <th>product id</th>
+        <th>product quantity</th>
+        <th>date</th>
+        <th>salesperson id</th>
+        <th>customer id</th>
+      </tr>
+      {% for i in transaction %}
+        <tr>
+          <td> {{ i['order_id'] }} </td>
+          <td> {{ i['product_id'] }} </td>
+          <td> {{ i['product_quantity'] }} </td>
+          <td> {{ i['date'] }} </td>
+          <td> {{ i['salesperson_id'] }} </td>
+          <td> {{ i['customer_id'] }} </td>
+        </tr>
+       {% endfor %}
+     </table>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends 'admin_layout.html' %}
+
+
+{% block title %}ADD_STORE{% endblock %}
+
+{% block content %}
+<h2>Store Data to Add</h2>
+<div>
+  <form method = "POST" action="{{ url_for('a_store_add') }}" autocomplete="off">
+    <br/><label for="store_id">store_id</label>
+    <br/><input type="text" name="store_id" id="store_id" required>  
+    <br/><label for="address">address</label>
+    <br/><input type="text" name="address" id="address" required>
+    <br/><label for="manager">manager</label>
+    <br/><input type="text" name="manager" id="manager" required>  
+    <br/><label for="num_salesperson">num_salesperson</label>
+    <br/><input type="text" name="num_salesperson" id="num_salesperson" required>  
+    <br/><label for="region">region</label>
+    <br/><input type="region" name="region" id="region" required>  
+    {% if msg != '' %}
+        <div class="msg">{{ msg }}</div>
+    {% endif %}     
+    <br/><input type="submit" value ="ADD"> 
+   </form>       
+</div>
+
+{% if store == () %}
+    Store Data is Empty!
+{% else %}
+    Store Data:
+    <table border = 1>
+      <tr>
+        <th>store id</th>
+        <th>address</th>
+        <th>manager</th>
+        <th>salesperson number</th>
+        <th>region</th>
+      </tr>
+      {% for i in store %}
+        <tr>
+          <td> {{ i['store_id'] }} </td>
+          <td> {{ i['address'] }} </td>
+          <td> {{ i['manager'] }} </td>
+          <td> {{ i['num_salesperson'] }} </td>
+          <td> {{ i['region'] }} </td>
+        </tr>
+       {% endfor %}
+     </table>
+{% endif %}
+{% endblock %}

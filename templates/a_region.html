@@ -1,0 +1,44 @@
+{% extends 'admin_layout.html' %}
+
+
+{% block title %}Region{% endblock %}
+
+{% block content %}
+<h2>Region Data Management</h2>
+<div>
+    <p>Please select the operation:</p>
+    <body>
+      <form method="POST" action="{{ url_for('a_region_change') }}">
+       <select name = "op">
+          {% for op in ops %}
+          <option value= "{{op}}" SELECTED>{{ op }}</option>"
+          {% endfor %}
+       </select>
+      <input type="submit" value ="Submit">  
+       {% for message in get_flashed_messages() %}
+       {{message}}
+       {% endfor %}      
+      </form>
+    </body>
+</div>
+{% if region == () %}
+    Region Data is Empty!
+{% else %}
+    Region Data:
+    <table border = 1>
+      <tr>
+        <th>region id</th>
+        <th>region name</th>
+        <th>region manager</th>
+      </tr>
+      {% for i in region %}
+        <tr>
+          <td> {{ i['region_id'] }} </td>
+          <td> {{ i['region_name'] }} </td>
+          <td> {{ i['region_manager'] }} </td>
+        </tr>
+       {% endfor %}
+     </table>
+{% endif %}
+
+{% endblock %}
