@@ -2,7 +2,7 @@
 Tech. and tools
 - [x] Mysql
 - [x] Flask 
-- [x] python 
+- [x] python 3.8
 
 
 -----
