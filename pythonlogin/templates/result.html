@@ -1,0 +1,71 @@
+{% extends 'layout.html' %}
+
+{% block title %}Result{% endblock %}
+
+{% block content %}
+<h2>Result Page</h2>
+<p><b>There is my search result, {{ username }}!</b></p>
+<!-- {% for e in form %}
+	<table border="1">
+	    <tr>
+	        <td>{{e.name}}</td>
+	        <td>{{e.price}}</td>
+	    </tr>
+
+	</table>
+{% endfor %} -->
+
+
+<form action="{{ url_for('result') }}" method="post">
+    <input type="text" name="max_price" placeholder="max_price" id="max_price" default = 999999>
+
+    <input type="text" name="min_price" placeholder="min_price" id="min_price" default = 0>
+    
+    <input type="text" name="name" placeholder="product_name" id="Name" >
+  
+    <input type="text" name="Product Kind" placeholder="Product Kind" id="Product Kind" default = 'PC'>
+   
+    <input type="submit" value="Search">
+</form>
+
+
+
+
+<div class="card-columns">
+   <div class="card">
+    <center>
+        {% if form %}
+           {% for item in form %}
+               <div class="card">
+                    <img src={{item.image}} class="card-img-top" alt="No figure">
+                    <div class="card-body">
+                        <h5 class="card-title">{{item.name}} -- ${{item.price}}</h5>
+                       <!--  <a href="#" class="btn btn-primary">Add to cart</a> &nbsp &nbsp -->
+                        
+                        <!-- <a href="{{ url_for('checkout')}}?id ={{item.id}}" class="btn btn-primary" id="a">Buy now</a> -->
+                        <form action="{{ url_for('checkout')}}" method="post">
+                            <label for="balloons">the Number of <b>{{item.name}}</b> you want:</label>
+                            <input type="number" name="quantity" placeholder="Quantity" id="quantity" value="1">
+                            <div class="msg">{{ msg }}</div>
+                            <input type="submit" value="Buy Now">
+                        </form>
+
+                    </div>
+
+                    <!-- <br><b>{{item.name}} ${{item.price}}</br></b>
+                    <br></br> -->
+                   <!-- <div class="product tumbnail thumbnail-3"><div class="zoom"><img src={{item.image}} style="width:140px;height:142px; background: transparent;" alt="NOT FOUND"></div> -->
+               </div>
+           {% endfor %}
+
+        {% else %}
+               <h1>No items meet these details.</h1>
+        {% endif %}
+    </center>
+    </div>
+</div>
+
+
+
+
+{% endblock %}
